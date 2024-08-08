@@ -1,0 +1,92 @@
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../features/auth/authSlice";
+import Spinner from "../components/Spinner";
+
+function Login() {
+  //set form data
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = formData;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isLoading } = useSelector((state) => state.auth);
+
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const userData = { email, password };
+    dispatch(login(userData))
+      .unwrap()
+      .then((user) => {
+        toast.success(
+          `Hello ${
+            user.name.split(" ")[0].charAt(0).toUpperCase() +
+            user.name.split(" ")[0].slice(1).toLowerCase()
+          }`
+        );
+        navigate("/");
+      })
+      .catch(toast.error);
+  };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+  return (
+    <div className="flex flex-col items-center mt-10 bg-zinc-50 w-1/2 mx-auto rounded-xl">
+      <header className="my-4">
+        <h1 className="text-center">Log In</h1>
+        <p>Please log in and kick entries </p>
+      </header>
+      <form className="p-4" onSubmit={onSubmit}>
+        <div className="my-2">
+          <input
+            type="email"
+            className="w-full p-4 ps-10 text-sm text-black border border-darkRed rounded-lg bg-gray-50 focus:ring-purple focus:border-blue-500  dark:placeholder-gray-400 dark:focus:ring-darkRed dark:focus:border-darkRed"
+            id="email"
+            name="email"
+            value={email}
+            onChange={onChange}
+            placeholder="Email"
+            required
+          />
+          <input
+            type="password"
+            className="w-full p-4 ps-10 mt-2 text-sm text-black border border-darkRed rounded-lg bg-gray-50 focus:ring-purple focus:border-blue-500  dark:placeholder-gray-400 dark:focus:ring-darkRed dark:focus:border-darkRed"
+            id="password"
+            name="password"
+            value={password}
+            onChange={onChange}
+            placeholder="Password"
+            required
+          />
+          <p className="my-4">
+            New to Eye watering words?
+            <Link to="/Register" className="text-mediumRed ml-2">
+              Sign Up
+            </Link>
+          </p>
+        </div>
+        <div className="form-group text-center mt-4">
+          <button className="bg-mediumBlue bg-opacity-80 hover:bg-darkBlue w-1/3 p-4 rounded-lg text-center text-white">
+            Log in
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default Login;
