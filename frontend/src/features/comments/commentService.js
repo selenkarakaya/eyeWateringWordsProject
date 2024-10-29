@@ -8,6 +8,7 @@ const getComments = async (entryId) => {
   return response.data;
 };
 
+// create new comment
 const createComment = async (commentText, entryId, token) => {
   const config = {
     headers: {
@@ -25,6 +26,22 @@ const createComment = async (commentText, entryId, token) => {
   return response.data;
 };
 
+// update comment
+
+const updateComment = async (commentText, commentId, entryId, token) => {
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+  const response = await axios.put(
+    API_URL + entryId + "/comments/" + commentId,
+    {
+      text: commentText,
+    },
+    config
+  );
+  return response.data;
+};
+
+//delete comment
+
 const deleteComment = async (commentId, entryId, token) => {
   const config = {
     headers: {
@@ -35,16 +52,15 @@ const deleteComment = async (commentId, entryId, token) => {
     API_URL + entryId + "/comments/" + commentId,
     config
   );
-  // return response.data;
   if (response.data) {
     return commentId;
   }
 };
-
 const commentService = {
   getComments,
   createComment,
   deleteComment,
+  updateComment,
 };
 
 export default commentService;

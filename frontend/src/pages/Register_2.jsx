@@ -10,9 +10,9 @@ import { PiCircleNotchThin } from "react-icons/pi";
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [randomUsername, setRandomUsername] = useState("");
 
   const [hover, setHover] = useState(false);
+  const [randomUsername, setRandomUsername] = useState("");
   //set form data
   const [formData, setFormData] = useState({
     name: "",
@@ -31,42 +31,14 @@ function Register() {
     }));
   };
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-  };
-  const validatePassword = (password) => {
-    const isLength = password.length >= 8;
-    const hasUppercase = password
-      .split("")
-      .some(
-        (char) => char === char.toUpperCase() && char !== char.toLowerCase()
-      );
-    const hasLowerCase = password
-      .split("")
-      .some(
-        (char) => char === char.toLowerCase() && char !== char.toUpperCase()
-      );
-    const hasDigit = password
-      .split("")
-      .some((char) => !isNaN(parseInt(char, 10)));
-    return isLength && hasUppercase && hasLowerCase && hasDigit;
-  };
-
   const onSubmit = (e) => {
     e.preventDefault();
-    if (
-      password !== password2 ||
-      !validateEmail(email) ||
-      validatePassword(password)
-    ) {
+    if (password !== password2) {
       toast.error("Passwords do not match");
     } else {
       const userData = { name, username, email, password };
-      // console.log(username);
-      // console.log(name);
-      // dispatch(register(userData));
-      // navigate("/");
+      dispatch(register(userData));
+      navigate("/");
     }
   };
 
@@ -78,8 +50,10 @@ function Register() {
     });
     const nick =
       name[0].replaceAll(" ", "_") + Math.floor(Math.random() * 1000);
-    document.querySelector("#registerForm input[name=username]").value = nick;
     setRandomUsername(nick);
+    setTimeout(() => {
+      setRandomUsername(" ");
+    }, 10000);
   };
 
   const onHover = () => {
@@ -99,7 +73,7 @@ function Register() {
         <h1 className="text-center">Register</h1>
         <p>Please create an account</p>
       </header>
-      <form className="w-3/4" onSubmit={onSubmit} id="registerForm">
+      <form className="w-3/4" onSubmit={onSubmit}>
         <div>
           <input
             type="text"
@@ -118,6 +92,8 @@ function Register() {
             className="w-full p-4 ps-10 text-sm text-darkGreen rounded-lg bg-gray-50 focus:outline-darkYellow focus:outline-4"
             id="username"
             name="username"
+            value={username}
+            // value={randomUsername ? randomUsername : username}
             onChange={onChange}
             placeholder="Username"
             required
@@ -156,7 +132,7 @@ function Register() {
             )}
           </div>
         </div>
-
+        <p className="my-4">{randomUsername && randomUsername}</p>
         <div>
           <input
             type="email"

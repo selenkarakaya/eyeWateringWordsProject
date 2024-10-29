@@ -9,13 +9,11 @@ const User = require("../models/userModel");
 //@access public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, username, email, password } = req.body;
-
   // Validation
   if (!name || !username || !email || !password) {
     res.status(404);
     throw new Error("Please, fill all fields");
   }
-
   // Find if user already exists
   const userExists = await User.findOne({ email });
   if (userExists) {
@@ -70,10 +68,31 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-//Generate
+//@route /api/users/:id
+const updateUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  const updatedUser = await User.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: {
+        token: generateToken(user._id),
+        name: req.body.name || user.name,
+        username: req.body.username || user.username,
+      },
+    },
+    { new: true }
+  );
 
+  res.status(200).json(updatedUser);
+});
+
+//Generate token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
 };
 
-module.exports = { registerUser, loginUser };
+const getUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id);
+  res.status(200).json(user);
+});
+module.exports = { registerUser, loginUser, updateUser, getUser };

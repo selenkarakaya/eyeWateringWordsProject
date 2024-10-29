@@ -34,9 +34,10 @@ function Login() {
           `Hello ${
             user.name.split(" ")[0].charAt(0).toUpperCase() +
             user.name.split(" ")[0].slice(1).toLowerCase()
-          }`
+          } 🫂  `
         );
         navigate("/");
+        window.location.reload();
       })
       .catch(toast.error);
   };
@@ -45,7 +46,7 @@ function Login() {
     return <Spinner />;
   }
   return (
-    <div className="flex flex-col items-center mt-10 bg-zinc-50 w-1/2 mx-auto rounded-xl">
+    <div className="flex flex-col items-center mt-10 bg-lightestGreen w-1/2 mx-auto rounded-xl">
       <header className="my-4">
         <h1 className="text-center">Log In</h1>
         <p>Please log in and kick entries </p>
@@ -54,7 +55,7 @@ function Login() {
         <div className="my-2">
           <input
             type="email"
-            className="w-full p-4 ps-10 text-sm text-black border border-darkRed rounded-lg bg-gray-50 focus:ring-purple focus:border-blue-500  dark:placeholder-gray-400 dark:focus:ring-darkRed dark:focus:border-darkRed"
+            className="w-full p-4 ps-10 text-sm rounded-lg text-darkGreen focus:outline-darkYellow focus:outline-4"
             id="email"
             name="email"
             value={email}
@@ -64,7 +65,7 @@ function Login() {
           />
           <input
             type="password"
-            className="w-full p-4 ps-10 mt-2 text-sm text-black border border-darkRed rounded-lg bg-gray-50 focus:ring-purple focus:border-blue-500  dark:placeholder-gray-400 dark:focus:ring-darkRed dark:focus:border-darkRed"
+            className="w-full p-4 ps-10 mt-2 text-sm rounded-lg text-darkGreen focus:outline-darkYellow focus:outline-4"
             id="password"
             name="password"
             value={password}
@@ -74,13 +75,13 @@ function Login() {
           />
           <p className="my-4">
             New to Eye watering words?
-            <Link to="/Register" className="text-mediumRed ml-2">
+            <Link to="/Register" className="text-mediumGreen ml-2">
               Sign Up
             </Link>
           </p>
         </div>
-        <div className="form-group text-center mt-4">
-          <button className="bg-mediumBlue bg-opacity-80 hover:bg-darkBlue w-1/3 p-4 rounded-lg text-center text-white">
+        <div className="text-center mt-4">
+          <button className="bg-darkenGreen hover:bg-darkGreen w-1/3 p-4 rounded-lg text-white transition duration-1000 delay-150">
             Log in
           </button>
         </div>

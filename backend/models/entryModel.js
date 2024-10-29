@@ -13,7 +13,7 @@ const entrySchema = mongoose.Schema(
     },
     description: {
       type: String,
-      required: [true, "Please enter a description of the issue"],
+      required: [true, "Please enter a description of the entry"],
     },
     tag: {
       type: String,

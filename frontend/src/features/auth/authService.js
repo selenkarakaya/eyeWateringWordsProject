@@ -12,8 +12,9 @@ const register = async (userData) => {
 };
 
 // update user
-const update = async (userData) => {
-  const response = await axios.put(API_URL, userData);
+const update = async (userData, userId, token) => {
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+  const response = await axios.put(API_URL + "/" + userId, userData, config);
   if (response.data) {
     localStorage.setItem("userUpdate", JSON.stringify(response.data));
   }
@@ -29,6 +30,11 @@ const login = async (userData) => {
   return response.data;
 };
 
+const getUser = async (userId) => {
+  const response = await axios.get(API_URL + "/" + userId);
+  return response.data;
+};
+
 // Logout user
 const logout = () => localStorage.removeItem("user");
 
@@ -37,6 +43,7 @@ const authService = {
   logout,
   login,
   update,
+  getUser,
 };
 
 export default authService;

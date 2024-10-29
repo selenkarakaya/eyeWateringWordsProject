@@ -10,6 +10,17 @@ const getAllEntries = asyncHandler(async (req, res) => {
   res.status(200).json(entrys);
 });
 
+const searchEntry = asyncHandler(async (req, res) => {
+  const entry = await Entry.find({
+    $or: [
+      { tag: { $regex: req.params.key } },
+      { username: { $regex: req.params.key } },
+      { description: { $regex: req.params.key } },
+    ],
+  });
+  res.status(200).json(entry);
+});
+
 //@desc Get  user Entry
 //@route GET /api/entries
 //@access public
@@ -87,7 +98,6 @@ const deleteEntry = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error("Not Authorized");
   }
-
   await entry.deleteOne();
 
   res.status(200).json({ success: true });
@@ -110,16 +120,16 @@ const updateEntry = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error("Entry not found");
   }
+
   // check user's id and entry's user id are same
   if (entry.user.toString() !== req.user.id) {
     res.status(401);
-    throw new Error("Not Authorized");
+    throw new Error("Not Authorizedd");
   }
-
   const updatedEntry = await Entry.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
-  res.status(200).json(entry);
+  res.status(200).json(updatedEntry);
 });
 
 module.exports = {
@@ -129,4 +139,5 @@ module.exports = {
   deleteEntry,
   updateEntry,
   getAllEntries,
+  searchEntry,
 };

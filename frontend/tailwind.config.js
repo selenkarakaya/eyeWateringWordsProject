@@ -7,20 +7,24 @@ module.exports = {
     screens: { sm: "480px", md: "768px", lg: "1026px", xl: "1440px" },
     extend: {
       colors: {
-        darkRed: "#921A40",
-        mediumRed: "#C63C51",
-        lightRed: "#D95F59",
-        darkPink: "#8C3061",
-        mediumPink: "#C75B7A",
-        mediumBeige: "#D9ABAB",
-        lightBeige: "#F4D9D0",
-        purple: "#522258",
-        black: "#021526",
-        darkBlue: "#03346E",
-        mediumBlue: "#6EACDA",
+        darkestGreen: "#081c15",
+        darkenGreen: "#1b4332",
+        darkGreen: "#2d6a4f",
+        mediumGreen: "#52b788",
+        partialGreen: "#74c69d",
+        lightGreen: "#95d5b2",
+        lightenGreen: "#b7e4c7",
+        lightestGreen: "#d8f3dc",
+        darkPurple: "#3d0066",
+        mediumPurple: "#510087",
+        lightPurple: "#5c0099",
+        darkYellow: "#fdc500",
+        mediumYellow: "#ffdd32",
+        lightYellow: "#ffe97f",
       },
-      backgroundImage: {
-        main: "url('../image/main2.jpg')",
+
+      boxShadow: {
+        hover: "0 20px 40px rgba(0,0,0,0.4)",
       },
       size: {
         45: "45rem",

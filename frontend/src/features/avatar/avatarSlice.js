@@ -47,6 +47,41 @@ export const getAvatar = createAsyncThunk(
   }
 );
 
+// Delete avatar comment
+export const deleteAvatar = createAsyncThunk(
+  "avatars/delete",
+  async ({ avatarId }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await avatarService.deleteAvatar(avatarId, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+// Get user entry
+export const getAvatarS = createAsyncThunk(
+  "avatar/get",
+  async (avatarId, thunkAPI) => {
+    try {
+      return await avatarService.getAvatarS(avatarId);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 export const avatarSlice = createSlice({
   name: "avatar",
   initialState,
@@ -54,8 +89,6 @@ export const avatarSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(createImage.pending, (state) => {
-        // NOTE: clear single entry on entryies page, this replaces need for
-        // loading state on individual entry
         state.isLoading = true;
       })
       .addCase(createImage.fulfilled, (state, action) => {
@@ -76,6 +109,34 @@ export const avatarSlice = createSlice({
         state.avatars = action.payload;
       })
       .addCase(getAvatar.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteAvatar.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteAvatar.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.avatars = state.avatars.filter(
+          (item) => item._id !== action.payload
+        );
+      })
+      .addCase(deleteAvatar.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getAvatarS.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAvatarS.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.avatar = action.payload;
+      })
+      .addCase(getAvatarS.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

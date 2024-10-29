@@ -1,90 +1,96 @@
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../features/auth/authSlice";
+import Logo from "./image/logo.png";
+import SearchEntry from "../pages/SearchEntry";
 import { FaSignOutAlt } from "react-icons/fa";
 import { RiUserHeartLine } from "react-icons/ri";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../features/auth/authSlice";
 import { TfiThought } from "react-icons/tfi";
-import Logo from "./image/logo.png";
+import { toast } from "react-toastify";
 
 function Header() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const { user } = useSelector((state) => state.auth);
 
   const onLogOut = () => {
     dispatch(logout());
+    toast("Bye for now", {
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
+
   return (
-    <header className="border-b-2 border-darkPink">
+    <header className="border-b-2 border-darkGreen">
       <div className="flex justify-center">
+        <div className="wrapper">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
         <Link to="/">
           <img src={Logo} alt="logo" className="w-60 h-60" />
         </Link>
       </div>
-      <div className="flex flex-col lg:flex-row lg:justify-between items-center justify-center mb-4">
-        <div>
-          <Link to="/" className="text-darkRed text-xl">
+      <div className="md:mx-4 lg:grid lg:grid-cols-3 gap-4 mb-4 space-y-4">
+        <div className="flex items-center">
+          <Link
+            to="/"
+            className="gradient text-xl ml-4 text-center invisible lg:visible"
+          >
             Eye Watering Words
           </Link>
         </div>
-        <form className="w-1/3">
-          <div className="relative">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-black dark:text-black"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-            </div>
-            <input
-              type="search"
-              id="default-search"
-              className="block w-full p-4 ps-10 text-sm text-black border border-darkRed rounded-lg bg-gray-50 focus:ring-purple focus:border-blue-500  dark:placeholder-gray-400 dark:focus:ring-darkRed dark:focus:border-darkRed"
-              placeholder="Entry"
-              required
-            />
-            <button
-              type="submit"
-              className="text-white absolute end-2.5 bottom-2.5 bg-purple hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-darkRed font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-purple"
-            >
-              Search
-            </button>
-          </div>
-        </form>
-        <div className="flex space-x-3 items-center">
+        <div className="w-full flex justify-center">
+          <SearchEntry />
+        </div>
+        <div className="flex space-x-3 items-center lg:justify-end justify-center">
           <ul>
             {user ? (
               <div className="flex">
                 <Link
                   to="/NewEntry"
-                  className="flex items-center space-x-1 px-3 py-1 hover:bg-darkBlue hover:text-white rounded-lg"
+                  className="flex items-center space-x-1 px-3 py-1  hover:bg-darkGreen hover:text-white rounded-lg transition ease-in-out delay-150 duration-500"
                 >
-                  <TfiThought />
+                  <TfiThought
+                    style={{
+                      color: "#95d5b2",
+                      fontSize: "1.2rem",
+                    }}
+                  />
                   <p>Add entry</p>
                 </Link>
-                <Link
-                  to="/Profile"
-                  className="flex items-center space-x-1 px-3 py-1 hover:bg-darkBlue hover:text-white rounded-lg"
-                >
-                  <RiUserHeartLine className="animate-bounce" />
-                  <p>My account</p>
-                </Link>
-                <div className="flex items-center bg-darkBlue  rounded-lg px-2 py-2 space-x-1 hover:scale-105 hover:bg-mediumBlue">
+                <button>
+                  <Link
+                    to="/Profile"
+                    // to={`/Profile/${user._id}`}
+                    className="flex items-center space-x-1 px-3 py-1  hover:bg-darkenGreen hover:text-white rounded-lg transition ease-in-out delay-150 duration-500"
+                  >
+                    <RiUserHeartLine className="animate-bounce" />
+                    <p>My account</p>
+                  </Link>
+                </button>
+                <div className="flex  items-center bg-darkGreen rounded-lg px-2 py-2 space-x-1 hover:scale-105 hover:bg-mediumGreen transition ease-in-out delay-150 duration-1000">
                   <FaSignOutAlt
                     style={{ color: "white", fontSize: "1.2rem" }}
                   />
-
                   <Link to="/">
                     <button
                       type="button"
@@ -98,13 +104,13 @@ function Header() {
               </div>
             ) : (
               <>
-                <button className=" bg-darkRed px-3 py-1 hover:scale-105 hover:bg-mediumRed rounded-lg mr-1">
-                  <Link to="/login" className=" text-white">
+                <button className="border-2 border-darkYellow px-3 py-1 hover:scale-105 rounded-lg mr-1">
+                  <Link to="/login" className=" gradient">
                     Log in
                   </Link>
                 </button>
-                <button className="bg-mediumBlue px-3 py-1 hover:scale-105 hover:bg-darkBlue rounded-lg">
-                  <Link to="/register" className=" text-white">
+                <button className="border-2 border-darkYellow px-3 py-1 hover:scale-105 rounded-lg">
+                  <Link to="/register" className="gradient">
                     Register
                   </Link>
                 </button>
@@ -114,7 +120,7 @@ function Header() {
         </div>
       </div>
       <section>
-        <ul className="flex justify-around">
+        <ul className="flex justify-around text-darkenGreen">
           <li>#politics</li>
           <li>#education</li>
           <li>#health</li>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/api/avatar";
+const API_URL = "http://localhost:8000/api/avatar/";
 
 // Cretae new entry
 const createImage = async (newImage, token) => {
@@ -22,9 +22,28 @@ const getAvatar = async () => {
   return response.data;
 };
 
+const getAvatarS = async (avatarId) => {
+  const response = await axios.get(API_URL + avatarId);
+  return response.data;
+};
+
+const deleteAvatar = async (avatarId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.delete(API_URL + avatarId, config);
+  // return response.data;
+  if (response.data) {
+    return avatarId;
+  }
+};
 const avatarService = {
   createImage,
   getAvatar,
+  deleteAvatar,
+  getAvatarS,
 };
 
 export default avatarService;

@@ -16,7 +16,6 @@ const addImage = async (req, res) => {
     res.status(401);
     throw new Error("User not found");
   }
-
   try {
     const avatarData = new Avatar({ user: req.user.id, file: filename });
     const avatar = await avatarData.save();
@@ -33,4 +32,16 @@ const getAvatar = asyncHandler(async (req, res) => {
   const avatar = await Avatar.find();
   res.status(200).json(avatar);
 });
-module.exports = { addImage, getAvatar };
+
+const getAvatarS = asyncHandler(async (req, res) => {
+  const avatar = await Avatar.findById(req.params.id);
+  res.status(200).json(avatar);
+});
+
+const deleteImage = asyncHandler(async (req, res) => {
+  const avatar = await Avatar.findById(req.params.id);
+  await avatar.deleteOne();
+  res.status(200).json({ success: true });
+});
+
+module.exports = { addImage, getAvatar, deleteImage, getAvatarS };

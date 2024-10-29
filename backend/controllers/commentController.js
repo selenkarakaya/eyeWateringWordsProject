@@ -31,6 +31,7 @@ const addComment = asyncHandler(async (req, res) => {
   const comment = await Comment.create({
     text: req.body.text,
     entry: req.params.entryId,
+    commentUsername: user.username,
     user: req.user.id,
   });
   res.status(200).json(comment);
@@ -51,7 +52,7 @@ const deleteComment = asyncHandler(async (req, res) => {
   // check entry exists
   if (!comment) {
     res.status(401);
-    throw new Error("Entry not found");
+    throw new Error("Comment not found");
   }
   // check user's id and entry's user id are same
   if (comment.user.toString() !== req.user.id) {
@@ -63,8 +64,52 @@ const deleteComment = asyncHandler(async (req, res) => {
 
   res.status(200).json({ success: true });
 });
+
+//@desc Update  user comment
+//@route PUT /api/entrys/:id/comments/:commentid
+//@access private
+const updateComment = asyncHandler(async (req, res) => {
+  // Get user using id
+  const user = await User.findById(req.user.id);
+  // check user exists
+  if (!user) {
+    res.status(401);
+    throw new Error("User not found");
+  }
+  const comment = await Comment.findById(req.params.id);
+  // checkcomment exists
+  if (!comment) {
+    res.status(401);
+    throw new Error("comment not found");
+  }
+
+  // check user's id and entry's user id are same
+  if (comment.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error("Not Authorizedd");
+  }
+
+  // entry.tag = req.body.tag;
+  // entry.description = req.body.description;
+
+  // const updatedEntry = await entry.save();
+  // res.status(200).json({
+  //   success: true,
+  //   updatedEntry,
+  // });
+  const updatedComment = await Comment.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    {
+      new: true,
+    }
+  );
+  res.status(200).json(updatedComment);
+});
+
 module.exports = {
   getComments,
   addComment,
   deleteComment,
+  updateComment,
 };

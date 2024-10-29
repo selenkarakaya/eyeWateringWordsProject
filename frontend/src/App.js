@@ -13,6 +13,7 @@ import Entries from "./pages/Entries";
 import SingleEntry from "./pages/SingleEntry";
 import CommentItem from "./components/CommentItem";
 import AvatarForm from "./pages/AvatarForm";
+import EditEntryForm from "./pages/EditEntryForm";
 function App() {
   return (
     <>
@@ -30,6 +31,7 @@ function App() {
           <Route path="/entry/:entryId" element={<SingleEntry />} />
           <Route path="/CommentItem" element={<CommentItem />} />
           <Route path="/AvatarForm" element={<AvatarForm />} />
+          <Route path="/EditEntry/:entryId" element={<EditEntryForm />} />
         </Routes>
         <Footer />
       </Router>

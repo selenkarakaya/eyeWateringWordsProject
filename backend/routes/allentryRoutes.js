@@ -1,8 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const { protect } = require("../middleware/authMiddleware");
-const { getAllEntries } = require("../controllers/entryController");
+
+const {
+  getAllEntries,
+  searchEntry,
+} = require("../controllers/entryController");
 
 router.route("/").get(getAllEntries);
+
+router.route("/search/:key").get(searchEntry);
 
 module.exports = router;

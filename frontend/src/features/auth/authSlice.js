@@ -1,16 +1,9 @@
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import authService from "./authService";
-// NOTE: use a extractErrorMessage function to save some repetition
 import { extractErrorMessage } from "../../utils";
 
 // Get user from localstorage
 const user = JSON.parse(localStorage.getItem("user"));
-
-// NOTE: remove isSuccess from state as we can infer from
-// presence or absence of user
-// There is no need for a reset function as we can do this in our pending cases
-// No need for isError or message as we can catch the AsyncThunkAction rejection
-// in our component and we will have the error message there
 const initialState = {
   user: user ? user : null,
   isLoading: false,
@@ -27,17 +20,6 @@ export const register = createAsyncThunk(
     }
   }
 );
-// update
-export const update = createAsyncThunk(
-  "auth/update",
-  async (user, thunkAPI) => {
-    try {
-      return await authService.update(user);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(extractErrorMessage(error));
-    }
-  }
-);
 
 // Login user
 export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
@@ -49,18 +31,40 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
 });
 
 // Logout user
-// NOTE: here we don't need a thunk as we are not doing anything async so we can
-// use a createAction instead
 export const logout = createAction("auth/logout", () => {
   authService.logout();
-  // return an empty object as our payload as we don't need a payload but the
-  // prepare function requires a payload return
   return {};
 });
 
-// NOTE: in cases of login or register pending or rejected then user will
-// already be null so no need to set to null in these cases
+// update user
+export const update = createAsyncThunk(
+  "auth/update",
+  async ({ userData, userId }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await authService.update(userData, userId, token);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(extractErrorMessage(error));
+    }
+  }
+);
 
+export const getUser = createAsyncThunk(
+  "user/get",
+  async (userId, thunkAPI) => {
+    try {
+      return await authService.getUser(userId);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -85,7 +89,6 @@ export const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload;
         state.isLoading = false;
       })
       .addCase(login.rejected, (state) => {
@@ -100,6 +103,19 @@ export const authSlice = createSlice({
       })
       .addCase(update.rejected, (state) => {
         state.isLoading = false;
+      })
+      .addCase(getUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload;
+      })
+      .addCase(getUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
 });

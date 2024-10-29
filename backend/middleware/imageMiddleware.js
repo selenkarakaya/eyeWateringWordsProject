@@ -14,7 +14,7 @@ const filter = function (req, file, cb) {
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else {
-    new Error("file unsportt"), false;
+    new Error("file unsport"), false;
   }
 };
 

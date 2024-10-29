@@ -12,6 +12,13 @@ var commentSchema = new mongoose.Schema(
       required: true,
       ref: "Entry",
     },
+
+    commentUsername: {
+      type: mongoose.Schema.Types.String,
+      required: true,
+      ref: "Entry",
+    },
+
     text: {
       type: String,
       required: true,

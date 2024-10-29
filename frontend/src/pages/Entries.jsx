@@ -5,12 +5,12 @@ import Spinner from "../components/Spinner";
 import Entry from "../components/Entry";
 
 function Entries() {
+  const dispatch = useDispatch();
+
   const { entries, isLoading, isSuccess } = useSelector(
     (state) => state.entries
   );
   const { user } = useSelector((state) => state.auth);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     return () => {
@@ -27,15 +27,13 @@ function Entries() {
   if (isLoading) {
     return <Spinner />;
   }
+
   return (
-    <>
-      <h1 className="text-2xl text-center mb-6">My entries</h1>
-      <div className="mx-4 grid grid-cols-3 gap-4">
-        {entries.map((entry) => (
-          <Entry key={entry._id} entry={entry} user={user} />
-        ))}
-      </div>
-    </>
+    <div className="card-list grid lg:grid-cols-1 gap-4">
+      {entries.map((entry) => (
+        <Entry key={entry._id} entry={entry} user={user} />
+      ))}
+    </div>
   );
 }
 
