@@ -64,7 +64,7 @@ function Register() {
     } else {
       const userData = { name, username, email, password };
       // console.log(username);
-      // console.log(name);
+
       // dispatch(register(userData));
       // navigate("/");
     }
