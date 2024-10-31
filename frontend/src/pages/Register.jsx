@@ -64,8 +64,7 @@ function Register() {
     } else {
       const userData = { name, username, email, password };
       // console.log(username);
-
-      // dispatch(register(userData));
+      dispatch(register(userData));
       // navigate("/");
     }
   };
@@ -156,7 +155,6 @@ function Register() {
             )}
           </div>
         </div>
-
         <div>
           <input
             type="email"
