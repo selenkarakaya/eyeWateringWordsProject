@@ -36,10 +36,8 @@
 - **Comment page**
   ![Comment page](./frontend/src/components/image/comment.png)
 - **Register&Log in page**
-  <p align="center"><img src="./frontend/src/components/image/login.png"><img src="./frontend/src/components/image/login.png"></p>
-  <p>![Comment page](./frontend/src/components/image/login.png)</p>
+  <p><img width="49%" height="250" src="./frontend/src/components/image/login.png"><img width="49%" height="250" src="./frontend/src/components/image/register.png"></p>
 
-  ![Comment page](./frontend/src/components/image/register.png) 
 ---
 
 ## 🔑 Usage
