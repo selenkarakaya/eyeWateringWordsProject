@@ -1,26 +1,24 @@
-## selen
 
 # 📝 Eye Watering Words
 
 **Eye Watering Words** is an interactive feedback platform where users can share their thoughts, ideas, and experiences. Built with **React**, **Redux**, **Tailwind CSS**, **Node.js**, and **MongoDB**, it provides a dynamic, user-friendly space for open expression. Users can register, post entries, comment on others' posts, and customize their profiles.
 
 ---
-
 ## 🚀 Features
 
-- **User Authentication**:
+- **User Authentication**: 
   - Secure registration with email validation and password checks.
   - Users can select a custom username or generate one randomly.
 - **Dynamic Entries & Comments**:
   - Users can create entries with custom tags, edit, or delete them.
   - Add comments on entries (their own or others’), with edit and delete functionality.
-- **Personalized Profiles**:
+- **Personalized Profiles**: 
   - Upload an avatar, and view your entries and comments in one place.
 - **Search Functionality**:
   - Search entries by tags, usernames, or entry content.
 - **Data Management**:
   - All data is securely saved in **MongoDB** via **Node.js** and managed with **Redux** for optimal state handling.
-
+  
 ---
 
 ## 🛠️ Tech Stack
@@ -34,14 +32,11 @@
 ## 📸 Screenshots
 
 - **Add new entry page**
-  ![entry page](./frontend/src/components/image/entry.png)
+  ![entry page](./frontend/src/components/image/entry.png) 
 - **Comment page**
   ![Comment page](./frontend/src/components/image/comment.png)
 - **Register&Log in page**
-  <p align="center"><img src="./frontend/src/components/image/login.png"><img src="./frontend/src/components/image/login.png"></p>
-  <p>![Comment page](./frontend/src/components/image/login.png)</p>
-
-  ![Comment page](./frontend/src/components/image/register.png)
+  <p><img width="49%" height="250" src="./frontend/src/components/image/login.png"><img width="49%" height="250" src="./frontend/src/components/image/register.png"></p>
 
 ---
 
@@ -56,18 +51,21 @@
 ---
 
 ## 📚 Learning & Insights
+Through the **Eye Watering Words** project, I gained valuable insights and skills, including:
 
-Through this project, I gained valuable experience in:
+- **User Authentication**: Enhanced my ability to implement secure user registration and login features, allowing users to create personalized accounts.
+- **Dynamic Content Management**: Improved my skills in handling user-generated content, enabling users to write, edit, and delete their thoughts and feedback seamlessly.
+- **Commenting System**: Learned to build an interactive commenting feature, allowing users to provide feedback on others' entries, fostering community interaction.
+- **Data Storage with MongoDB**: Gained experience in using MongoDB for efficient data storage and retrieval, ensuring all user entries and comments are managed effectively.
+- **Responsive Design**: Developed skills in creating a responsive user interface using Tailwind CSS, ensuring a smooth experience across various devices.
 
-- State Management with Redux for smoother and efficient data flow.
-- Authentication & Authorization using JWT and user validation.
-- Backend Development with MongoDB and Node.js for handling dynamic content.
-- Frontend Design using Tailwind CSS for a responsive, polished UI.
+This project solidified my understanding of full-stack development and deepened my passion for creating applications that promote user engagement and expression.
 
+---
 ## 📄 License
-
 This project is open-source and available for personal or educational use.
 
+---
 ## 📬 Contact
-
 If you have any questions or feedback, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/selenkarakaya/) or [GitHub](https://github.com/selenkarakaya).
+
