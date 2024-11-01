@@ -1,24 +1,26 @@
+## selen
 
 # 📝 Eye Watering Words
 
 **Eye Watering Words** is an interactive feedback platform where users can share their thoughts, ideas, and experiences. Built with **React**, **Redux**, **Tailwind CSS**, **Node.js**, and **MongoDB**, it provides a dynamic, user-friendly space for open expression. Users can register, post entries, comment on others' posts, and customize their profiles.
 
 ---
+
 ## 🚀 Features
 
-- **User Authentication**: 
+- **User Authentication**:
   - Secure registration with email validation and password checks.
   - Users can select a custom username or generate one randomly.
 - **Dynamic Entries & Comments**:
   - Users can create entries with custom tags, edit, or delete them.
   - Add comments on entries (their own or others’), with edit and delete functionality.
-- **Personalized Profiles**: 
+- **Personalized Profiles**:
   - Upload an avatar, and view your entries and comments in one place.
 - **Search Functionality**:
   - Search entries by tags, usernames, or entry content.
 - **Data Management**:
   - All data is securely saved in **MongoDB** via **Node.js** and managed with **Redux** for optimal state handling.
-  
+
 ---
 
 ## 🛠️ Tech Stack
@@ -32,7 +34,7 @@
 ## 📸 Screenshots
 
 - **Add new entry page**
-  ![entry page](./frontend/src/components/image/entry.png) 
+  ![entry page](./frontend/src/components/image/entry.png)
 - **Comment page**
   ![Comment page](./frontend/src/components/image/comment.png)
 - **Register&Log in page**
@@ -51,6 +53,7 @@
 ---
 
 ## 📚 Learning & Insights
+
 Through the **Eye Watering Words** project, I gained valuable insights and skills, including:
 
 - **User Authentication**: Enhanced my ability to implement secure user registration and login features, allowing users to create personalized accounts.
@@ -62,10 +65,13 @@ Through the **Eye Watering Words** project, I gained valuable insights and skill
 This project solidified my understanding of full-stack development and deepened my passion for creating applications that promote user engagement and expression.
 
 ---
+
 ## 📄 License
+
 This project is open-source and available for personal or educational use.
 
 ---
-## 📬 Contact
-If you have any questions or feedback, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/selenkarakaya/) or [GitHub](https://github.com/selenkarakaya).
 
+## 📬 Contact
+
+If you have any questions or feedback, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/selenkarakaya/) or [GitHub](https://github.com/selenkarakaya).
