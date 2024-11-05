@@ -86,7 +86,6 @@ function SingleEntry() {
               {new Date(entry.createdAt).toLocaleString("en-UK")}
             </h5>
           </div>
-
           {avatars.map((avatar) => {
             return (
               entry.user === avatar.user && (

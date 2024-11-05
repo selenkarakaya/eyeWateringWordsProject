@@ -11,7 +11,6 @@ function EditEntryForm() {
 
   const [tag, setTag] = useState("");
   const [description, setDescription] = useState("");
-
   const { user } = useSelector((state) => state.auth);
   const { entry, isError, message } = useSelector((state) => state.entries);
   const { entryId } = useParams();

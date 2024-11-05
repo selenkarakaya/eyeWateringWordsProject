@@ -75,7 +75,6 @@ function Profile() {
                   </div>
                 )}
               </button>
-
               <form className="flex flex-col items-center justify-center mt-2">
                 <Link to="/AvatarForm" className="zig-zag">
                   {avatars.map((avatar) => {
