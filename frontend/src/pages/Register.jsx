@@ -4,9 +4,9 @@ import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { register } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
-import { generate } from "random-words";
+// import { generate } from "random-words";
 import { PiCircleNotchThin } from "react-icons/pi";
-import { validatePassword, validateEmail } from "./Test2";
+// import { validatePassword, validateEmail } from "./Test2";
 
 function Register() {
   const dispatch = useDispatch();
@@ -32,27 +32,27 @@ function Register() {
     }));
   };
 
-  // const validateEmail = (email) => {
-  //   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  //   return emailRegex.test(email);
-  // };
-  // const validatePassword = (password) => {
-  //   const isLength = password.length >= 8;
-  //   const hasUppercase = password
-  //     .split("")
-  //     .some(
-  //       (char) => char === char.toUpperCase() && char !== char.toLowerCase()
-  //     );
-  //   const hasLowerCase = password
-  //     .split("")
-  //     .some(
-  //       (char) => char === char.toLowerCase() && char !== char.toUpperCase()
-  //     );
-  //   const hasDigit = password
-  //     .split("")
-  //     .some((char) => !isNaN(parseInt(char, 10)));
-  //   return isLength && hasUppercase && hasLowerCase && hasDigit;
-  // };
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  };
+  const validatePassword = (password) => {
+    const isLength = password.length >= 8;
+    const hasUppercase = password
+      .split("")
+      .some(
+        (char) => char === char.toUpperCase() && char !== char.toLowerCase()
+      );
+    const hasLowerCase = password
+      .split("")
+      .some(
+        (char) => char === char.toLowerCase() && char !== char.toUpperCase()
+      );
+    const hasDigit = password
+      .split("")
+      .some((char) => !isNaN(parseInt(char, 10)));
+    return isLength && hasUppercase && hasLowerCase && hasDigit;
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -69,18 +69,21 @@ function Register() {
       // navigate("/");
     }
   };
-
-  const onNickname = (e) => {
-    const name = generate({
-      exactly: 1,
-      wordsPerString: 3,
-      formatter: (word) => word.slice(0, 1).toUpperCase().concat(word.slice(1)),
-    });
-    const nick =
-      name[0].replaceAll(" ", "_") + Math.floor(Math.random() * 1000);
-    document.querySelector("#registerForm input[name=username]").value = nick;
-    setRandomUsername(nick);
+  const onClick = (e) => {
+    e.preventDefault();
   };
+
+  // const onNickname = (e) => {
+  //   const name = generate({
+  //     exactly: 1,
+  //     wordsPerString: 3,
+  //     formatter: (word) => word.slice(0, 1).toUpperCase().concat(word.slice(1)),
+  //   });
+  //   const nick =
+  //     name[0].replaceAll(" ", "_") + Math.floor(Math.random() * 1000);
+  //   document.querySelector("#registerForm input[name=username]").value = nick;
+  //   setRandomUsername(nick);
+  // };
 
   const onHover = () => {
     setHover(true);
@@ -99,7 +102,7 @@ function Register() {
         <h1 className="text-center">Register</h1>
         <p>Please create an account</p>
       </header>
-      <form className="w-3/4" onSubmit={onSubmit} id="registerForm">
+      <form className="w-3/4" onSubmit={onSubmit} data-testid="registerForm">
         <div>
           <input
             type="text"
@@ -131,7 +134,7 @@ function Register() {
             {hover ? (
               <div className="flex">
                 <PiCircleNotchThin
-                  onClick={onNickname}
+                  // onClick={onNickname}
                   className="cursor-pointer"
                   style={{
                     color: "darkRed",
@@ -145,7 +148,7 @@ function Register() {
               </div>
             ) : (
               <PiCircleNotchThin
-                onClick={onNickname}
+                // onClick={onNickname}
                 className="cursor-pointer"
                 style={{
                   color: "#2d6a4f",
@@ -174,8 +177,9 @@ function Register() {
             name="password"
             value={password}
             onChange={onChange}
-            placeholder="Enter password"
+            placeholder="Password"
             required
+            data-testid="password"
           />
           <input
             type="password"
@@ -194,8 +198,11 @@ function Register() {
             </Link>
           </p>
         </div>
-        <div className="text-center my-4">
-          <button className="w-1/3 p-4 rounded-lg gradient border-2 border-darkYellow">
+        <div className="text-center my-4" data-testid="sbmt">
+          <button
+            className="w-1/3 p-4 rounded-lg gradient border-2 border-darkYellow"
+            onClick={onClick}
+          >
             Submit
           </button>
         </div>
