@@ -20,5 +20,6 @@ describe("validate email", () => {
     expect(validateEmail("redrose")).toEqual(false);
     expect(validateEmail("redrose10@gmail")).toEqual(false);
     expect(validateEmail("Redroses23@gmail.com")).toEqual(true);
+    expect(validateEmail("redroses23@gmail.com")).toEqual(true);
   });
 });

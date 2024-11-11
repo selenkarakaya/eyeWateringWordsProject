@@ -6,7 +6,6 @@ import { register } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
 // import { generate } from "random-words";
 import { PiCircleNotchThin } from "react-icons/pi";
-// import { validatePassword, validateEmail } from "./Test2";
 
 export const validatePassword = (password) => {
   const isLength = password.length >= 8;
