@@ -2,40 +2,32 @@
 
 name: Run Tests
 
-# Trigger the workflow on push and pull request events to the main branch
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
 
-# Define the job
 jobs:
   test:
-    # Specify the latest Ubuntu environment
     runs-on: ubuntu-latest
 
-    # Define the steps in this job
     steps:
-      # Checkout the repository code
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # No need to specify Node version here
 
-      # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' # Specify the Node.js version, e.g., 16 or 18
+          node-version: '20'  # Specify Node.js 20 explicitly here
 
-      # Install dependencies and run tests
       - name: Install dependencies
         run: npm install
 
       - name: Run tests
         run: npm test
 
-      # Optionally: Generate test coverage report (if your project supports it)
       - name: Run tests with coverage
         run: npm test -- --coverage
         env:
-          CI: true  # This flag ensures tests fail if coverage thresholds are unmet
+          CI: true
