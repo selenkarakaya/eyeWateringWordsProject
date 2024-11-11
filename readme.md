@@ -67,6 +67,9 @@ This project solidified my understanding of full-stack development and deepened 
 
 This project is open-source and available for personal or educational use.
 
+
+
+[![Test Status](https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml/badge.svg)](https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml)
 ---
 
 ## 📬 Contact
