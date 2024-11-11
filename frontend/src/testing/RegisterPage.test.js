@@ -1,4 +1,4 @@
-import { validatePassword, validateEmail } from "../pages/Test2";
+import { validateEmail, validatePassword } from "../pages/Register";
 
 describe("validate password", () => {
   it("should be a function", () => {

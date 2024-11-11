@@ -8,6 +8,25 @@ import Spinner from "../components/Spinner";
 import { PiCircleNotchThin } from "react-icons/pi";
 // import { validatePassword, validateEmail } from "./Test2";
 
+export const validatePassword = (password) => {
+  const isLength = password.length >= 8;
+  const hasUppercase = password
+    .split("")
+    .some((char) => char === char.toUpperCase() && char !== char.toLowerCase());
+  const hasLowerCase = password
+    .split("")
+    .some((char) => char === char.toLowerCase() && char !== char.toUpperCase());
+  const hasDigit = password
+    .split("")
+    .some((char) => !isNaN(parseInt(char, 10)));
+  return isLength && hasUppercase && hasLowerCase && hasDigit;
+};
+
+export const validateEmail = (email) => {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+};
+
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,36 +51,15 @@ function Register() {
     }));
   };
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-  };
-  const validatePassword = (password) => {
-    const isLength = password.length >= 8;
-    const hasUppercase = password
-      .split("")
-      .some(
-        (char) => char === char.toUpperCase() && char !== char.toLowerCase()
-      );
-    const hasLowerCase = password
-      .split("")
-      .some(
-        (char) => char === char.toLowerCase() && char !== char.toUpperCase()
-      );
-    const hasDigit = password
-      .split("")
-      .some((char) => !isNaN(parseInt(char, 10)));
-    return isLength && hasUppercase && hasLowerCase && hasDigit;
-  };
-
   const onSubmit = (e) => {
     e.preventDefault();
-    if (
-      password !== password2 ||
-      !validateEmail(email) ||
-      validatePassword(password)
-    ) {
+    console.log("tik");
+    if (password !== password2) {
       toast.error("Passwords do not match");
+    } else if (!validateEmail(email)) {
+      toast.error("email error");
+    } else if (!validatePassword(password)) {
+      toast.error("pasword error");
     } else {
       const userData = { name, username, email, password };
       // console.log(username);
@@ -69,21 +67,18 @@ function Register() {
       // navigate("/");
     }
   };
-  const onClick = (e) => {
-    e.preventDefault();
-  };
 
-  // const onNickname = (e) => {
-  //   const name = generate({
-  //     exactly: 1,
-  //     wordsPerString: 3,
-  //     formatter: (word) => word.slice(0, 1).toUpperCase().concat(word.slice(1)),
-  //   });
-  //   const nick =
-  //     name[0].replaceAll(" ", "_") + Math.floor(Math.random() * 1000);
-  //   document.querySelector("#registerForm input[name=username]").value = nick;
-  //   setRandomUsername(nick);
-  // };
+  const onNickname = (e) => {
+    const name = generate({
+      exactly: 1,
+      wordsPerString: 3,
+      formatter: (word) => word.slice(0, 1).toUpperCase().concat(word.slice(1)),
+    });
+    const nick =
+      name[0].replaceAll(" ", "_") + Math.floor(Math.random() * 1000);
+    document.querySelector("#registerForm input[name=username]").value = nick;
+    setRandomUsername(nick);
+  };
 
   const onHover = () => {
     setHover(true);
@@ -102,7 +97,12 @@ function Register() {
         <h1 className="text-center">Register</h1>
         <p>Please create an account</p>
       </header>
-      <form className="w-3/4" onSubmit={onSubmit} data-testid="registerForm">
+      <form
+        className="w-3/4"
+        onSubmit={onSubmit}
+        data-testid="registerForm"
+        aria-label="signup-form"
+      >
         <div>
           <input
             type="text"
@@ -134,7 +134,7 @@ function Register() {
             {hover ? (
               <div className="flex">
                 <PiCircleNotchThin
-                  // onClick={onNickname}
+                  onClick={onNickname}
                   className="cursor-pointer"
                   style={{
                     color: "darkRed",
@@ -148,7 +148,7 @@ function Register() {
               </div>
             ) : (
               <PiCircleNotchThin
-                // onClick={onNickname}
+                onClick={onNickname}
                 className="cursor-pointer"
                 style={{
                   color: "#2d6a4f",
@@ -199,10 +199,7 @@ function Register() {
           </p>
         </div>
         <div className="text-center my-4" data-testid="sbmt">
-          <button
-            className="w-1/3 p-4 rounded-lg gradient border-2 border-darkYellow"
-            onClick={onClick}
-          >
+          <button className="w-1/3 p-4 rounded-lg gradient border-2 border-darkYellow">
             Submit
           </button>
         </div>
