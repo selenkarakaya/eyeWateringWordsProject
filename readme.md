@@ -1,4 +1,16 @@
-# 📝 Eye Watering Words
+<h1 align="center">
+  📝💧 Eye Watering Words
+</h1>
+<p align="center">
+    <em>User Authentication, MongoDB Integration, Real-Time Feedback, CRUD Operations, Interactive UI
+</em>
+</p>
+<p align="center">
+<a href="https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml" target="_blank">
+    <img src="https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml/badge.svg" alt="Test">
+</a>
+</p>
+
 
 **Eye Watering Words** is an interactive feedback platform where users can share their thoughts, ideas, and experiences. Built with **React**, **Redux**, **Tailwind CSS**, **Node.js**, and **MongoDB**, it provides a dynamic, user-friendly space for open expression. Users can register, post entries, comment on others' posts, and customize their profiles.
 
@@ -63,15 +75,53 @@ This project solidified my understanding of full-stack development and deepened 
 
 ---
 
+## 🏗️ Setup & Installation
+
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/selenkarakaya/eyeWateringWordsProject.git
+    cd eyeWateringWordsProject
+    ```
+2. **Install dependencies** for both frontend and backend:
+    ```bash
+    # Install frontend dependencies
+    cd frontend
+    npm install
+
+    # Install backend dependencies
+    cd backend
+    npm install
+    ```
+
+3. **Environment Variables**:
+   Set up a `.env` file in the root directory.
+
+   ```plaintext
+   NODE_ENV = development
+   PORT = 8000
+   MONGODB_URI=your_mongodb_connection_string
+   MONGO_URI = your mongodb uri
+   JWT_SECRET=your_jwt_secret
+   ```
+4. **Start the application**: To run both frontend and backend concurrently, navigate to the root folder and run:
+   ```
+   npm run dev
+   ```
+5. Run Tests: To run tests for the project, make sure Jest or your chosen test framework is installed:
+   - Frontend Testing: Navigate to the frontend folder and run the frontend tests:
+    ```
+    cd frontend
+    npm test
+    ```
 ## 📄 License
 
 This project is open-source and available for personal or educational use.
 
-
-
-[![Test Status](https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml/badge.svg)](https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml)
 ---
 
 ## 📬 Contact
 
 If you have any questions or feedback, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/selenkarakaya/) or [GitHub](https://github.com/selenkarakaya).
+
+
+## Happy coding! 👩‍💻👨‍💻
