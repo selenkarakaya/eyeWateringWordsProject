@@ -7,7 +7,8 @@
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "jest"
   },
   "author": "Selen Karakaya",
   "license": "MIT",
@@ -32,6 +33,7 @@
     "react-image-crop": "^11.0.7"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.1.4"
   }
 }

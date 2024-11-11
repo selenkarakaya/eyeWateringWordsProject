@@ -53,7 +53,6 @@ function Register() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("tik");
     if (password !== password2) {
       toast.error("Passwords do not match");
     } else if (!validateEmail(email)) {
@@ -62,7 +61,6 @@ function Register() {
       toast.error("pasword error");
     } else {
       const userData = { name, username, email, password };
-      // console.log(username);
       dispatch(register(userData));
       // navigate("/");
     }
