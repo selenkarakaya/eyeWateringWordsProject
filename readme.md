@@ -1,4 +1,21 @@
-# 📝 Eye Watering Words
+<h1 align="center">
+  📝 Eye Watering Words
+</h1>
+<p align="center">
+    <em>User Authentication, MongoDB Integration, Real-Time Feedback, CRUD Operations, Interactive UI
+</em>
+</p>
+<p align="center">
+<a href="https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml" target="_blank">
+    <img src="https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml/badge.svg" alt="Test">
+</a>
+
+
+
+</p>
+
+
+[![Test Status](https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml/badge.svg)](https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml)
 
 **Eye Watering Words** is an interactive feedback platform where users can share their thoughts, ideas, and experiences. Built with **React**, **Redux**, **Tailwind CSS**, **Node.js**, and **MongoDB**, it provides a dynamic, user-friendly space for open expression. Users can register, post entries, comment on others' posts, and customize their profiles.
 
@@ -66,7 +83,6 @@ This project solidified my understanding of full-stack development and deepened 
 ## 📄 License
 
 This project is open-source and available for personal or educational use.
-
 
 
 [![Test Status](https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml/badge.svg)](https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml)
