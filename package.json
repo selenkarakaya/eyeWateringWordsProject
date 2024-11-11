@@ -35,5 +35,17 @@
   "devDependencies": {
     "jest": "^29.7.0",
     "nodemon": "^3.1.4"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx"
+    ],
+    "testEnvironment": "jsdom"
   }
 }
