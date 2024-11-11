@@ -18,7 +18,6 @@
   - Search entries by tags, usernames, or entry content.
 - **Data Management**:
   - All data is securely saved in **MongoDB** via **Node.js** and managed with **Redux** for optimal state handling.
-
 ---
 
 ## 🛠️ Tech Stack
