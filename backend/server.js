@@ -20,18 +20,16 @@ app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/entries", require("./routes/entryRoutes"));
 app.use("/api/allentries", require("./routes/allentryRoutes"));
 app.use("/api/avatar", require("./routes/avatarRoutes"));
-
+app.use("/uploads", express.static("././frontend/src/components/uploads/"));
 // serve frontend
 if (process.env.NODE_ENV === "production") {
   // set build folder as static
   app.use(express.static(path.join(__dirname, "../frontend/build")));
-  app.get("*", (req, res) =>
-    res.sendFile(__dirname, "../", "frontend", "build", "index.html")
-  );
+  app.get("*", (_, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+  });
 } else {
   app.get("/", (req, res) => res.status(200).json({ message: "Welcome!" }));
 }
 app.use(errorHandler);
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
-app.use("/uploads", express.static("././frontend/src/components/uploads/"));
