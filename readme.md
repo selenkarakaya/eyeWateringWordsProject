@@ -38,6 +38,9 @@
 - **Database**: MongoDB
 
 ---
+## Demo 🔗
+
+ 👉 [**You can check out a live demo of the Eye Watering Words!**](https://eyewateringword-468f399c8e55.herokuapp.com/) 
 
 
 ## 📸 Screenshots
@@ -74,9 +77,6 @@ Through the **Eye Watering Words** project, I gained valuable insights and skill
 This project solidified my understanding of full-stack development and deepened my passion for creating applications that promote user engagement and expression.
 
 ---
-## Demo 🔗
-
- 👉 [**You can check out a live demo of the Eye Watering Words!**](https://eyewateringword-468f399c8e55.herokuapp.com/) 
 
 ## 🏗️ Setup & Installation
 
