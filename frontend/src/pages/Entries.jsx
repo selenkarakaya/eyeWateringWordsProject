@@ -30,9 +30,11 @@ function Entries() {
 
   return (
     <div className="card-list grid lg:grid-cols-1 gap-4">
-      {entries.map((entry) => (
-        <Entry key={entry._id} entry={entry} user={user} />
-      ))}
+      {entries.length > 0
+        ? entries.map((entry) => (
+            <Entry key={entry._id} entry={entry} user={user} />
+          ))
+        : "empty"}
     </div>
   );
 }
