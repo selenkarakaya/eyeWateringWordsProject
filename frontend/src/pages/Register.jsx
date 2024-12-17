@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { register } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
-// import { generate } from "random-words";
+import { generate } from "random-words";
 import { PiCircleNotchThin } from "react-icons/pi";
 
 export const validatePassword = (password) => {
