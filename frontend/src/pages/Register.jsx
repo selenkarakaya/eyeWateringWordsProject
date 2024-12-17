@@ -61,7 +61,7 @@ function Register() {
     } else {
       const userData = { name, username, email, password };
       dispatch(register(userData));
-      // navigate("/");
+      navigate("/");
     }
   };
 
