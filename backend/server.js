@@ -4,7 +4,7 @@ const colors = require("colors");
 const dotenv = require("dotenv").config();
 const { errorHandler } = require("./middleware/errorHandler");
 const connectDB = require("./config/db");
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
 const app = express();
 let cors = require("cors");
 
@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
   });
 } else {
-  app.get("/", (req, res) => res.status(200).json({ message: "Welcome!" }));
+  app.get("/", (_, res) => res.status(200).json({ message: "Welcome!" }));
 }
 app.use(errorHandler);
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

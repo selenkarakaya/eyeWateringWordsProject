@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/api/entries/";
+const API_URL = "/api/entries/";
 
 // Cretae new entry
 const createEntry = async (entryData, token) => {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/api/avatar/";
+const API_URL = "/api/avatar/";
 
 // Cretae new entry
 const createImage = async (newImage, token) => {
