@@ -20,7 +20,6 @@ app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/entries", require("./routes/entryRoutes"));
 app.use("/api/allentries", require("./routes/allentryRoutes"));
 app.use("/api/avatar", require("./routes/avatarRoutes"));
-app.use("/public", express.static(path.join(__dirname, "../public")));
 
 // serve frontend
 if (process.env.NODE_ENV === "production ") {
