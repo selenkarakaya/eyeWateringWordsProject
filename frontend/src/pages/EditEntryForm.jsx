@@ -92,7 +92,7 @@ function EditEntryForm() {
           ></textarea>
         </div>
         <div className="flex justify-center">
-          <button className="bg-darkPink text-white px-8 py-2 rounded-md  hover:opacity-90">
+          <button className="bg-darkPink  px-8 py-2 rounded-md  hover:opacity-90">
             Post
           </button>
         </div>
