@@ -6,10 +6,7 @@
 </em>
 </p>
 <p align="center">
-<a href="https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml" target="_blank">
-    <img src="https://github.com/selenkarakaya/eyeWateringWordsProject/actions/workflows/test.yml/badge.svg" alt="Test">
-</a>
-</p>
+
 
 **Eye Watering Words** is an interactive feedback platform where users can share their thoughts, ideas, and experiences. Built with **React**, **Redux**, **Tailwind CSS**, **Node.js**, and **MongoDB**, it provides a dynamic, user-friendly space for open expression. Users can register, post entries, comment on others' posts, and customize their profiles.
 
