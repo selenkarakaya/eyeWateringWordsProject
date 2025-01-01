@@ -7,7 +7,6 @@
 </p>
 <p align="center">
 
-
 **Eye Watering Words** is an interactive feedback platform where users can share their thoughts, ideas, and experiences. Built with **React**, **Redux**, **Tailwind CSS**, **Node.js**, and **MongoDB**, it provides a dynamic, user-friendly space for open expression. Users can register, post entries, comment on others' posts, and customize their profiles.
 
 ---
