@@ -24,9 +24,9 @@ app.use("/uploads", express.static("././frontend/src/components/uploads/"));
 // serve frontend
 if (process.env.NODE_ENV === "production") {
   // set build folder as static
-  app.use(express.static(path.join(__dirname, "../frontend/public")));
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
   app.get("*", (_, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/public/index.html"));
+    res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
   });
 } else {
   app.get("/", (_, res) => res.status(200).json({ message: "Welcome!" }));
